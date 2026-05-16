@@ -218,7 +218,7 @@ const handleCommand = async (command) => {
 
       await store.logout()
       ElMessage.success('已退出登录')
-      router.push('/login')
+      router.push('/')
     } else if (command === 'profile') {
       router.push('/academic/profile')
     }

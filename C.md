@@ -1,5 +1,74 @@
 # LEAF-SMS 版本迭代记录
 
+## v1.3 (2026-05-17)
+
+### 版本主题：前端路由路径统一 - '/login' → '/'
+
+### 更改内容
+
+#### 1. AcademicLayout.vue - 修改
+
+**更改原因：** 统一前端路由路径，登录页作为根路径 '/' 访问
+
+**更改方式：** 退出登录跳转 `router.push('/login')` → `router.push('/')`
+
+#### 2. AdminLayout.vue - 修改
+
+**更改原因：** 统一前端路由路径
+
+**更改方式：** 退出登录跳转 `router.push('/login')` → `router.push('/')`
+
+#### 3. HeadTeacherLayout.vue - 修改
+
+**更改原因：** 统一前端路由路径
+
+**更改方式：** 退出登录跳转 `router.push('/login')` → `router.push('/')`
+
+#### 4. IndexLayout.vue - 修改（3处）
+
+**更改原因：** 统一前端路由路径
+
+**更改方式：**
+- 登录按钮跳转 `router.push('/login')` → `router.push('/')`
+- 注册按钮跳转 `router.push('/login?mode=register')` → `router.push('/?mode=register')`
+- 未认证跳转 `router.push('/login')` → `router.push('/')`
+
+#### 5. ParentLayout.vue - 修改
+
+**更改原因：** 统一前端路由路径
+
+**更改方式：** 退出登录跳转 `router.push('/login')` → `router.push('/')`
+
+#### 6. TeacherLayout.vue - 修改
+
+**更改原因：** 统一前端路由路径
+
+**更改方式：** 退出登录跳转 `router.push('/login')` → `router.push('/')`
+
+#### 7. Server.js - 修改（4处）
+
+**更改原因：** 统一前端路由路径判断和重定向
+
+**更改方式：**
+- 响应拦截器登录页判断 `path === '/login'` → `path === '/'`
+- 错误拦截器登录页判断 `path === '/login'` → `path === '/'`
+- Token过期重定向条件 `currentPath !== '/login' && !currentPath.includes('/login')` → `currentPath !== '/'`
+- Token过期重定向目标 `router.replace('/login')` → `router.replace('/')`
+
+#### 8. route/index.js - 修改（3处）
+
+**更改原因：** 将登录页设为根路径，原首页移至 /home
+
+**更改方式：**
+- 路由路径 `/login` → `/`，组件为 LoginPage.vue
+- 路由路径 `/` → `/home`，组件为 IndexLayout.vue
+- 路由守卫中 `next('/login')` → `next('/')`（2处）
+- 已登录用户访问根路径时自动跳转角色页面
+
+#### 注意
+
+- 后端 API 路径 `/api/auth/login` 未修改，仅修改前端路由路径
+
 ## v1.2 (2026-05-15)
 
 ### 版本主题：登录页面改版 - Personnal-Web 视觉风格移植

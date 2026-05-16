@@ -1,5 +1,80 @@
 # LEAF-SMS 更新日志
 
+## [v1.3] - 2026-05-17
+
+### 前端路由路径统一：'/login' → '/'
+
+### 概述
+
+将所有前端路由引用从 '/login' 统一更新为 '/'，使登录页面作为根路径访问。仅修改前端路由跳转路径，不涉及后端 API 路径（如 '/api/auth/login' 保持不变）。
+
+---
+
+## 修改文件清单
+
+### 1. `frontend/src/components/AcademicLayout.vue`
+
+**改动类型：** 修改（1处）
+
+**改动内容：**
+- 退出登录后跳转路径：`router.push('/login')` → `router.push('/')`
+
+### 2. `frontend/src/components/AdminLayout.vue`
+
+**改动类型：** 修改（1处）
+
+**改动内容：**
+- 退出登录后跳转路径：`router.push('/login')` → `router.push('/')`
+
+### 3. `frontend/src/components/HeadTeacherLayout.vue`
+
+**改动类型：** 修改（1处）
+
+**改动内容：**
+- 退出登录后跳转路径：`router.push('/login')` → `router.push('/')`
+
+### 4. `frontend/src/components/IndexLayout.vue`
+
+**改动类型：** 修改（3处）
+
+**改动内容：**
+- 登录按钮跳转：`router.push('/login')` → `router.push('/')`
+- 注册按钮跳转：`router.push('/login?mode=register')` → `router.push('/?mode=register')`
+- 未认证用户跳转：`router.push('/login')` → `router.push('/')`
+
+### 5. `frontend/src/components/ParentLayout.vue`
+
+**改动类型：** 修改（1处）
+
+**改动内容：**
+- 退出登录后跳转路径：`router.push('/login')` → `router.push('/')`
+
+### 6. `frontend/src/components/TeacherLayout.vue`
+
+**改动类型：** 修改（1处）
+
+**改动内容：**
+- 退出登录后跳转路径：`router.push('/login')` → `router.push('/')`
+
+### 7. `frontend/src/utils/Server.js`
+
+**改动类型：** 修改（4处）
+
+**改动内容：**
+- 响应拦截器登录页判断：`router.currentRoute.value.path === '/login'` → `router.currentRoute.value.path === '/'`
+- 错误拦截器登录页判断：`router.currentRoute.value.path === '/login'` → `router.currentRoute.value.path === '/'`
+- Token过期重定向条件：`currentPath !== '/login' && !currentPath.includes('/login')` → `currentPath !== '/'`
+- Token过期重定向目标：`router.replace('/login')` → `router.replace('/')`
+
+---
+
+## 注意事项
+
+- 所有 `/api/auth/login` 后端 API 路径保持不变，仅修改前端路由路径
+- 共修改 7 个文件，12 处代码变更
+
+---
+
 ## [v1.2] - 2026-05-15
 
 ### 登录页面改版 - Personnal-Web 视觉风格移植

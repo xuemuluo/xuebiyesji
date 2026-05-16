@@ -4,8 +4,8 @@ import * as utils from '@/utils/utils.js';
 
 const routes = [
   {
-    path: '/login',
-    name: 'Login',
+    path: '/',
+    name: 'HomePage',
     component: () => import('@/views/LoginPage.vue'),
     meta: {
       title: 'LEAF-SMS - 学生学籍管理系统',
@@ -14,8 +14,8 @@ const routes = [
   },
 
   {
-    path: '/',
-    name: 'HomePage',
+    path: '/home',
+    name: 'Home',
     component: () => import('@/components/IndexLayout.vue'),
     meta: {
       title: 'Leaf SMS - 学生学籍管理系统',
@@ -33,7 +33,7 @@ const routes = [
         name: 'AdminDashboard',
         component: () => import('@/views/Admin/DashboardPage.vue'),
         meta: {
-          title: '控制�?- Leaf SMS',
+          title: '控制�?- Leaf SMS',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -181,7 +181,7 @@ const routes = [
         name: 'AcademicDashboard',
         component: () => import('@/views/academic/DashboardPage.vue'),
         meta: {
-          title: '控制�?- Leaf SMS',
+          title: '控制�?- Leaf SMS',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -299,7 +299,7 @@ const routes = [
         name: 'HeadTeacherDashboard',
         component: () => import('@/views/headteacher/DashboardPage.vue'),
         meta: {
-          title: '工作�?- Leaf SMS',
+          title: '工作�?- Leaf SMS',
           requiresAuth: true,
           role: 'HEADTEACHER'
         }
@@ -407,7 +407,7 @@ const routes = [
         name: 'TeacherDashboard',
         component: () => import('@/views/Teacher/DashboardPage.vue'),
         meta: {
-          title: '工作�?- Leaf SMS',
+          title: '工作�?- Leaf SMS',
           requiresAuth: true,
           role: 'TEACHER'
         }
@@ -585,7 +585,7 @@ const routes = [
     name: 'AuthorInfoPage',
     component: () => import('@/views/index/AuthorInfoPage.vue'),
     meta: {
-      title: '作者介�?- Leaf SMS',
+      title: '作者介�?- Leaf SMS',
       requiresAuth: false
     }
   },
@@ -617,7 +617,7 @@ router.beforeEach(async (to, from, next) => {
 
     if (!isAuthenticated) {
       store.clearUser();
-      next('/login');
+      next('/');
       return;
     }
 
@@ -631,7 +631,7 @@ router.beforeEach(async (to, from, next) => {
         await store.fetchCurrentUser();
       } catch (error) {
         store.clearUser();
-        next('/login');
+        next('/');
         return;
       }
     }
@@ -654,7 +654,7 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 
-  if (to.path === '/login' && utils.isLoggedIn()) {
+  if (to.path === '/' && utils.isLoggedIn()) {
     const isAuthenticated = await store.checkAuthStatus();
     if (isAuthenticated) {
       const userRole = store.state.user?.roleCode;

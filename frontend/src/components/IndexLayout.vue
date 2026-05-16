@@ -241,7 +241,7 @@ const handleUserCommand = async (command) => {
 
 const handleLogin = () => {
   try {
-    router.push('/login')
+    router.push('/')
   } catch (error) {
     handleError('页面跳转失败', error)
   }
@@ -249,7 +249,7 @@ const handleLogin = () => {
 
 const handleRegister = () => {
   try {
-    router.push('/login?mode=register')
+    router.push('/?mode=register')
   } catch (error) {
     handleError('页面跳转失败', error)
   }
@@ -258,7 +258,7 @@ const handleRegister = () => {
 const handleStart = () => {
   try {
     if (!isAuthenticated.value) {
-      router.push('/login')
+      router.push('/')
       return
     }
 

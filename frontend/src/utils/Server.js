@@ -42,7 +42,7 @@ Server.interceptors.response.use(
           response.data.message.includes('未授权访问') ||
           response.data.message.includes('账号已被禁用') ||
           response.data.message.includes('账号已被禁用或不存在'))) {
-          const isLoginPage = router.currentRoute.value.path === '/login'
+          const isLoginPage = router.currentRoute.value.path === '/'
           if (!response.config._autoLogin && !response.config.url.includes('/api/auth/login') && !isLoginPage) {
             handleTokenExpiration(true, response.data.message)
           }
@@ -65,7 +65,7 @@ Server.interceptors.response.use(
     switch (status) {
       case 401: {
         const errorMessage = error.response.data?.message || '登录已过期，请重新登录'
-        const isLoginPage = router.currentRoute.value.path === '/login'
+        const isLoginPage = router.currentRoute.value.path === '/'
         if (!error.config._autoLogin && !error.config.url.includes('/api/auth/login') && !isLoginPage) {
           handleTokenExpiration(true, errorMessage)
         }
@@ -98,8 +98,8 @@ function handleTokenExpiration(showMessage = true, message = '登录已过期，
   }
 
   const currentPath = router.currentRoute.value.path
-  if (currentPath !== '/login' && !currentPath.includes('/login')) {
-    router.replace('/login')
+  if (currentPath !== '/') {
+    router.replace('/')
   }
 }
 
