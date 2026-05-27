@@ -1,5 +1,105 @@
 # STUREGSYS 版本迭代记录
 
+## v2.0 (2026-05-27)
+
+### 版本主题：后端Java包名全面重命名
+
+### 更改原因
+
+将后端所有Java包名从 `com.leafsms` 统一替换为 `com.sturegsys`，与前端项目名称保持一致，完成整个项目从 LeafSMS 到 StuRegSys 的全面重命名。
+
+### 更改方式
+
+1. 创建新目录 `backend/src/main/java/com/sturegsys/`，复制所有子目录和文件
+2. 使用PowerShell批量替换53个Java文件中的 `com.leafsms` 为 `com.sturegsys`
+3. 将 `LeafSmsApplication.java` 重命名为 `StuRegSysApplication.java`，更新类名
+4. 删除旧目录 `backend/src/main/java/com/leafsms/`
+5. 更新 `pom.xml` 中的 groupId、artifactId、name、description、finalName
+6. 更新 `application.yml` 中的 spring.application.name 和 JWT secret
+7. 更新 `application-prod.yml` 中的数据库URL、连接池名称、类型别名包
+8. 更新 `application-dev.yml` 中的数据库URL
+9. 更新 `Dockerfile` 中的 JAR 文件名
+
+### 更改内容
+
+#### 1. Java包目录重构
+- 创建 `backend/src/main/java/com/sturegsys/` 及所有子目录
+- 复制53个Java文件到新目录
+- 删除旧目录 `backend/src/main/java/com/leafsms/`
+
+#### 2. Java文件更新（53个文件）
+- 所有 `package com.leafsms` → `package com.sturegsys`
+- 所有 `import com.leafsms` → `import com.sturegsys`
+
+#### 3. 应用主类重命名
+- 文件：`LeafSmsApplication.java` → `StuRegSysApplication.java`
+- 类名：`LeafSmsApplication` → `StuRegSysApplication`
+
+#### 4. pom.xml 更新
+- `<groupId>com.leafsms</groupId>` → `<groupId>com.sturegsys</groupId>`
+- `<artifactId>leaf-sms-backend</artifactId>` → `<artifactId>stu-reg-sys-backend</artifactId>`
+- `<name>leaf-sms-backend</name>` → `<name>stu-reg-sys-backend</name>`
+- `<finalName>leaf-sms-backend</finalName>` → `<finalName>stu-reg-sys-backend</finalName>`
+
+#### 5. 配置文件更新
+- `application.yml`：spring.application.name、JWT secret
+- `application-prod.yml`：数据库URL、连接池名称、类型别名包
+- `application-dev.yml`：数据库URL
+- `Dockerfile`：JAR 文件名
+
+### 验证结果
+- ✅ 新目录包含所有53个Java文件
+- ✅ 所有包名和导入语句已更新
+- ✅ 旧目录已完全删除
+- ✅ 无残留的 `com.leafsms` 引用
+
+---
+
+## v1.8 (2026-05-27)
+
+### 版本主题：项目名称统一与联系方式汇总
+
+### 更改原因
+
+将所有文档中的项目名称从 Leaf SMS/LEAF-SMS/LeafSMS 统一更新为 StuRegSys/STUREGSYS，并创建联系方式汇总文档。
+
+### 更改方式
+
+1. 更新 README.md：标题、简介、GitHub badge URLs、Docker 配置全部替换为新名称
+2. 更新 API_DOCUMENTATION.md：标题和正文中的项目名称替换
+3. 更新 需求分析.md：标题、项目名称、系统定位、系统边界图中的名称替换
+4. 更新 CHANGELOG.md：所有项目名称变体替换为新名称
+5. 更新 C.md：所有项目名称变体替换为新名称
+6. 新增 联系方式汇总.md：汇总邮箱、GitHub、开发者、项目信息
+
+### 更改内容
+
+#### 1. README.md - 修改
+- 标题 `Leaf SMS` → `StuRegSys`
+- 项目简介 `Leaf SMS (Student Management System)` → `StuRegSys (Student Registration System)`
+- GitHub badge URLs `YangShengzhou03/LeafSMS` → `xuemuluo/xuebiyesji`
+- Docker 网络/容器名/镜像全部更新为 sturegsys 系列
+- 数据库名 `leaf_sms` → `sturegsys`
+
+#### 2. API_DOCUMENTATION.md - 修改
+- 标题和正文 `Leaf SMS` → `StuRegSys`
+
+#### 3. 需求分析.md - 修改
+- 标题 `Leaf SMS` → `StuRegSys`
+- 项目名称 `Leaf SMS (Student Management System)` → `StuRegSys (Student Registration System)`
+- 系统定位和系统边界图中的 `Leaf SMS` → `StuRegSys`
+
+#### 4. CHANGELOG.md - 修改
+- 所有 `LEAF-SMS`/`LeafSMS`/`Leaf SMS` → `STUREGSYS`/`StuRegSys`
+
+#### 5. C.md - 修改
+- 所有 `LEAF-SMS`/`LeafSMS`/`Leaf SMS` → `STUREGSYS`/`StuRegSys`
+
+#### 6. 联系方式汇总.md - 新增
+- 汇总项目所有联系方式信息
+
+---
+
 ## v1.7 (2026-05-24)
 
 ### 版本主题：GitNexus 代码智能分析
@@ -11,7 +111,7 @@
 ### 更改方式
 
 1. 全局安装 `@xuansang2770/gitnexus` npm 包
-2. 因原项目路径含中文字符（学生管理系统、雪落暮），GitNexus 数据库无法创建，将项目复制到 `C:\temp\LeafSMS` 并执行 `git init` + `git add` + `git commit`
+2. 因原项目路径含中文字符（学生管理系统、雪落暮），GitNexus 数据库无法创建，将项目复制到 `C:\temp\StuRegSys` 并执行 `git init` + `git add` + `git commit`
 3. 执行 `gitnexus analyze` 生成代码图谱
 4. 使用 `gitnexus cypher` 执行多个 Cypher 查询获取详细数据
 5. 使用 `gitnexus context` 和 `gitnexus impact` 进行上下文和影响分析
@@ -194,7 +294,7 @@
 **更改方式：**
 
 - 移植自定义光标效果（`mix-blend-mode: difference` 白色圆形光标跟随鼠标）
-- 移植标题遮罩切换效果（鼠标悬停时 "LEAF-SMS" ↔ "学生学籍管理系统" 径向渐变切换）
+- 移植标题遮罩切换效果（鼠标悬停时 "STUREGSYS" ↔ "学生学籍管理系统" 径向渐变切换）
 - 移植翻转卡片动画（登录/关于/联系三个面板 `clip-path` 翻转）
 - 移植擦除光线效果（翻转时白色光线从左到右扫过）
 - 新增毛玻璃导航栏（`backdrop-filter: blur(12px)`）
@@ -210,7 +310,7 @@
 
 **更改方式：**
 
-- 登录页标题从 `'登录 - Leaf SMS'` 改为 `'LEAF-SMS - 学生学籍管理系统'`
+- 登录页标题从 `'登录 - StuRegSys'` 改为 `'STUREGSYS - 学生学籍管理系统'`
 - 修复目录大小写问题：`@/views/admin/` → `@/views/Admin/`（14处）
 - 修复目录大小写问题：`@/views/teacher/` → `@/views/Teacher/`（8处）
 
@@ -225,3 +325,33 @@
 **更改原因：** 记录版本迭代信息
 
 **更改方式：** 创建版本迭代记录文件
+
+---
+
+## v2.1 (2026-05-27)
+
+### 版本主题：Bug修复与页面清理
+
+### 更改原因
+
+修复数据库配置损坏和表结构缺失问题，清理联系我们页面中的原作者信息。
+
+### 更改方式
+
+1. 恢复 `application-dev.yml` 中被意外替换的数据库URL
+2. 为 `students` 表添加 `current_address` 列
+3. 删除 `ContactUsPage.vue` 中的QQ群和Gitee链接
+
+### 更改内容
+
+#### 1. application-dev.yml 数据库配置修复
+- 原因：数据库URL被意外替换为bichon.png文件路径，Spring Boot启动失败
+- 恢复：`url: jdbc:mysql://localhost:3306/leaf_sms?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai`
+
+#### 2. students表添加current_address列
+- 原因：Student实体类有current_address字段但数据库表缺少该列
+- 执行：`ALTER TABLE students ADD COLUMN current_address VARCHAR(255) DEFAULT NULL`
+
+#### 3. 联系我们页面清理
+- 保留：电子邮件 `Y3023209684@outlook.com`
+- 删除：QQ群链接、Gitee开源项目链接

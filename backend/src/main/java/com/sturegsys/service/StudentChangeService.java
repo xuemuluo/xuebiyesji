@@ -1,4 +1,4 @@
-﻿package com.sturegsys.service;
+package com.sturegsys.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;

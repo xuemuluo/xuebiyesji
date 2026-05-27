@@ -1,4 +1,4 @@
-﻿package com.sturegsys.controller;
+package com.sturegsys.controller;
 
 import com.sturegsys.common.Result;
 import com.sturegsys.entity.Student;

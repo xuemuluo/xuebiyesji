@@ -1,4 +1,4 @@
-﻿package com.sturegsys.utils;
+package com.sturegsys.utils;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

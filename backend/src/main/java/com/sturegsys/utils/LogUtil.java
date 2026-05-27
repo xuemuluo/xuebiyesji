@@ -1,4 +1,4 @@
-﻿package com.sturegsys.utils;
+package com.sturegsys.utils;
 
 import com.sturegsys.service.OperationLogService;
 import com.sturegsys.service.UserService;

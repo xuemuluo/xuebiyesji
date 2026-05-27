@@ -1,4 +1,4 @@
-﻿package com.sturegsys.controller;
+package com.sturegsys.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sturegsys.common.Result;

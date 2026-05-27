@@ -1,4 +1,4 @@
-﻿package com.sturegsys.controller;
+package com.sturegsys.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

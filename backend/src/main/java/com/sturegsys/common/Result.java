@@ -1,4 +1,4 @@
-﻿package com.sturegsys.common;
+package com.sturegsys.common;
 
 public class Result<T> {
 

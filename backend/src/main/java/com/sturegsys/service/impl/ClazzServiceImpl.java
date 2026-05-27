@@ -1,4 +1,4 @@
-﻿package com.sturegsys.service.impl;
+package com.sturegsys.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

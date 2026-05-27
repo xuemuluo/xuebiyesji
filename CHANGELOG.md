@@ -1,12 +1,296 @@
 # STUREGSYS 更新日志
 
+## [v2.0] - 2026-05-27
+
+### 后端Java包名全面重命名
+
+### 概述
+
+将后端所有Java包名从 `com.leafsms` 统一替换为 `com.sturegsys`，包括包声明、导入语句、配置文件引用、构建配置等，共涉及53个Java文件和多个配置文件。
+
+### 修改内容
+
+#### 1. Java包目录重构
+
+**更改原因：** 统一后端Java包命名空间
+
+**更改方式：**
+- 创建新目录 `backend/src/main/java/com/sturegsys/`
+- 复制所有子目录（common, config, controller, entity, mapper, service, utils）到新目录
+- 删除旧目录 `backend/src/main/java/com/leafsms/`
+
+#### 2. Java文件包名和导入语句更新（53个文件）
+
+**更改原因：** 更新所有Java文件的包声明和导入语句
+
+**更改方式：**
+- 所有文件的 `package com.leafsms` → `package com.sturegsys`
+- 所有文件的 `import com.leafsms` → `import com.sturegsys`
+- 涉及文件：common（2个）、config（4个）、controller（10个）、entity（9个）、mapper（9个）、service（8个）、service/impl（8个）、utils（2个）、Application（1个）
+
+#### 3. 应用主类重命名
+
+**更改原因：** 主类名称与新包名保持一致
+
+**更改方式：**
+- 文件从 `LeafSmsApplication.java` 重命名为 `StuRegSysApplication.java`
+- 类名从 `LeafSmsApplication` → `StuRegSysApplication`
+- `SpringApplication.run(LeafSmsApplication.class, args)` → `SpringApplication.run(StuRegSysApplication.class, args)`
+
+#### 4. pom.xml 构建配置更新
+
+**更改原因：** Maven项目元数据与新包名保持一致
+
+**更改方式：**
+- `<groupId>com.leafsms</groupId>` → `<groupId>com.sturegsys</groupId>`
+- `<artifactId>leaf-sms-backend</artifactId>` → `<artifactId>stu-reg-sys-backend</artifactId>`
+- `<name>leaf-sms-backend</name>` → `<name>stu-reg-sys-backend</name>`
+- `<description>Leaf SMS 学生学籍管理系统后端服务</description>` → `<description>StuRegSys 学生学籍管理系统后端服务</description>`
+- `<finalName>leaf-sms-backend</finalName>` → `<finalName>stu-reg-sys-backend</finalName>`
+
+#### 5. application.yml 配置更新
+
+**更改原因：** 应用配置与新项目名保持一致
+
+**更改方式：**
+- `spring.application.name: leaf-sms-backend` → `spring.application.name: stu-reg-sys-backend`
+- `app.jwt.secret: leaf-sms-secret-key-for-jwt-token-generation` → `app.jwt.secret: sturegsys-secret-key-for-jwt-token-generation`
+
+#### 6. application-prod.yml 配置更新
+
+**更改原因：** 生产环境配置与新项目名保持一致
+
+**更改方式：**
+- 数据库URL `jdbc:mysql://leafsms-mysql:3306/leaf_sms` → `jdbc:mysql://sturegsys-mysql:3306/stu_reg_sys`
+- 连接池名称 `LeafSmsHikariPool` → `SturegsysHikariPool`
+- 类型别名包 `com.leafsms.entity` → `com.sturegsys.entity`
+
+#### 7. application-dev.yml 配置更新
+
+**更改原因：** 开发环境配置与新项目名保持一致
+
+**更改方式：**
+- 数据库URL `jdbc:mysql://localhost:3306/leaf_sms` → `jdbc:mysql://localhost:3306/stu_reg_sys`
+
+#### 8. Dockerfile 更新
+
+**更改原因：** Docker构建配置与新项目名保持一致
+
+**更改方式：**
+- `COPY leaf-sms-backend.jar` → `COPY stu-reg-sys-backend.jar`
+
+### 验证结果
+
+- ✅ 新目录 `com/sturegsys/` 包含所有53个Java文件
+- ✅ 所有Java文件的包名和导入语句已更新为 `com.sturegsys`
+- ✅ 旧目录 `com/leafsms/` 已完全删除
+- ✅ 所有配置文件中的 `leafsms` 引用已更新
+- ✅ 无残留的 `com.leafsms` 引用
+
+## [v2.1] - 2026-05-27
+
+### Bug修复与页面清理
+
+### 修改内容
+
+#### 1. application-dev.yml 数据库配置修复
+
+**更改原因：** 数据库URL被意外替换为bichon.png文件路径，导致Spring Boot启动失败
+
+**更改方式：** 恢复正确的数据库连接URL `jdbc:mysql://localhost:3306/leaf_sms?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai`
+
+#### 2. students表添加current_address列
+
+**更改原因：** Student实体类有current_address字段但数据库表缺少该列，导致学生列表API报错
+
+**更改方式：** 执行 `ALTER TABLE students ADD COLUMN current_address VARCHAR(255) DEFAULT NULL COMMENT '现住址' AFTER household_address`
+
+#### 3. 联系我们页面清理
+
+**更改原因：** 删除原作者的QQ群和Gitee链接，仅保留电子邮件
+
+**更改方式：**
+- 保留电子邮件 `Y3023209684@outlook.com`
+- 删除QQ群链接和描述
+- 删除Gitee开源项目链接和描述
+
+---
+
+## [v1.9] - 2026-05-27
+
+### 前端项目名称全面重命名
+
+### 概述
+
+将前端所有显示名称从 "Leaf SMS" / "LEAF-SMS" / "leafsms" 统一替换为 "StuRegSys" / "STUREGSYS" / "sturegsys"，包括页面标题、侧边栏、登录页、路由元信息、配置文件等。
+
+### 修改内容
+
+#### 1. frontend/package.json - 修改
+
+**更改原因：** 统一前端项目包名和描述
+
+**更改方式：**
+- `"name": "leaf-sms-frontend"` → `"name": "sturegsys-frontend"`
+- `"description": "Leaf SMS 学生学籍管理系统前端"` → `"description": "StuRegSys 学生学籍管理系统前端"`
+
+#### 2. frontend/vue.config.js - 修改
+
+**更改原因：** 统一页面标题和 PWA 应用名称
+
+**更改方式：**
+- `args[0].title = 'Leaf SMS 学生学籍管理系统'` → `'StuRegSys 学生学籍管理系统'`
+- `name: 'Leaf SMS 学生学籍管理系统'` → `'StuRegSys 学生学籍管理系统'`
+
+#### 3. frontend/.env.development & .env.production - 修改
+
+**更改原因：** 统一环境变量中的应用标题
+
+**更改方式：**
+- `VUE_APP_TITLE=Leaf SMS 学生学籍管理系统` → `VUE_APP_TITLE=StuRegSys 学生学籍管理系统`
+
+#### 4. frontend/Dockerfile - 修改
+
+**更改原因：** 统一 Nginx 配置文件引用
+
+**更改方式：**
+- `COPY leafsms.conf` → `COPY sturegsys.conf`
+
+#### 5. frontend/leafsms.conf → frontend/sturegsys.conf - 重命名
+
+**更改原因：** 配置文件名与 Dockerfile 保持一致
+
+**更改方式：**
+- 文件从 `leafsms.conf` 重命名为 `sturegsys.conf`
+- `proxy_pass http://leafsms-backend:8081` → `proxy_pass http://sturegsys-backend:8081`
+
+#### 6. https-nginx/default.conf - 修改
+
+**更改原因：** 统一 Nginx 代理目标
+
+**更改方式：**
+- `proxy_pass http://leafsms-frontend:80` → `proxy_pass http://sturegsys-frontend:80`
+
+#### 7. frontend/src/views/LoginPage.vue - 修改
+
+**更改原因：** 统一登录页品牌标识
+
+**更改方式：**
+- 6处 `LEAF-SMS` → `STUREGSYS`
+- 1处 `admin@leafsms.com` → `admin@sturegsys.com`
+
+#### 8. 5个 Layout 组件 - 修改
+
+**更改原因：** 统一所有角色的侧边栏和水印品牌名
+
+**更改方式：** 对 AcademicLayout、AdminLayout、HeadTeacherLayout、ParentLayout、TeacherLayout 每个文件：
+- `logo` 标题中 `Leaf SMS` → `StuRegSys`
+- 抽屉菜单 `drawer-logo` 中 `Leaf SMS` → `StuRegSys`
+- JavaScript `watermarkText` 函数返回值 `Leaf SMS` → `StuRegSys`
+
+#### 9. frontend/src/route/index.js - 修改
+
+**更改原因：** 统一路由元信息中的页面标题（53处）
+
+**更改方式：**
+- 所有 `title: 'xxx - Leaf SMS'` → `title: 'xxx - StuRegSys'`
+- `title: 'LEAF-SMS - 学生学籍管理系统'` → `title: 'STUREGSYS - 学生学籍管理系统'`
+
+#### 10. 索引页面 - 修改
+
+**更改原因：** 统一信息页面品牌名
+
+**更改方式：**
+- AuthorInfoPage.vue: `Leaf SMS` → `StuRegSys`（2处），`LEAF-SMS` → `STUREGSYS`（1处），头像文字 `Yang` → `Xue`
+- FaqPage.vue: `Leaf SMS` → `StuRegSys`（1处）
+- PrivacyPolicyPage.vue: `Leaf SMS` → `StuRegSys`（2处），`LEAF-SMS` → `STUREGSYS`（1处）
+- UserGuidePage.vue: `Leaf SMS` → `StuRegSys`（2处），`LEAF-SMS` → `STUREGSYS`（4处）
+
+#### 无需修改的文件（确认无相关引用）
+
+- frontend/public/index.html - 使用模板变量，无需修改
+- frontend/public/favicon.svg - 无文本引用，无需修改
+- frontend/src/App.vue - 无相关引用，无需修改
+- frontend/src/services/api.js - API 路径不含品牌名，无需修改
+- frontend/src/utils/Server.js - 无相关引用，无需修改
+- frontend/src/views/index/ContactUsPage.vue - 无相关引用，无需修改
+
+---
+
+## [v1.8] - 2026-05-27
+
+### 项目名称统一与联系方式汇总
+
+### 概述
+
+将所有文档中的项目名称统一更新为 StuRegSys，并创建联系方式汇总文档。
+
+### 修改内容
+
+#### 1. README.md - 修改
+
+**更改原因：** 统一项目名称，更新 GitHub 仓库链接和 Docker 镜像名称
+
+**更改方式：**
+- 标题 `Leaf SMS` → `StuRegSys`
+- 项目简介 `Leaf SMS (Student Management System)` → `StuRegSys (Student Registration System)`
+- GitHub badge URLs `YangShengzhou03/LeafSMS` → `xuemuluo/xuebiyesji`
+- Docker 网络 `leafsms-network` → `sturegsys-network`
+- Docker 容器名 `leafsms-mysql/backend/frontend` → `sturegsys-mysql/backend/frontend`
+- Docker 镜像 `yangshengzhou/leafsms` → `xuemuluo/sturegsys`
+- 数据库名 `leaf_sms` → `sturegsys`
+
+#### 2. API_DOCUMENTATION.md - 修改
+
+**更改原因：** 统一项目名称
+
+**更改方式：**
+- 标题和正文中的 `Leaf SMS` → `StuRegSys`
+
+#### 3. 需求分析.md - 修改
+
+**更改原因：** 统一项目名称
+
+**更改方式：**
+- 标题 `Leaf SMS` → `StuRegSys`
+- 项目名称 `Leaf SMS (Student Management System)` → `StuRegSys (Student Registration System)`
+- 系统定位和系统边界图中的 `Leaf SMS` → `StuRegSys`
+
+#### 4. CHANGELOG.md - 修改
+
+**更改原因：** 统一项目名称
+
+**更改方式：**
+- 标题 `LEAF-SMS` → `STUREGSYS`
+- 所有 `LeafSMS` → `StuRegSys`
+- 所有 `LEAF-SMS` → `STUREGSYS`
+- 所有 `Leaf SMS` → `StuRegSys`
+
+#### 5. C.md - 修改
+
+**更改原因：** 统一项目名称
+
+**更改方式：**
+- 标题 `LEAF-SMS` → `STUREGSYS`
+- 所有 `LeafSMS` → `StuRegSys`
+- 所有 `LEAF-SMS` → `STUREGSYS`
+- 所有 `Leaf SMS` → `StuRegSys`
+
+#### 6. 联系方式汇总.md - 新增
+
+**更改原因：** 汇总项目中所有联系方式信息
+
+**更改方式：** 创建文档，包含邮箱、GitHub 仓库、开发者信息、项目信息
+
+---
+
 ## [v1.7] - 2026-05-24
 
 ### GitNexus 代码智能分析
 
 ### 概述
 
-安装 GitNexus（Graph RAG + LadybugDB）代码智能分析工具，对整个 LeafSMS 项目进行深度代码图谱分析，生成完整的依赖关系图、社区聚类、影响分析和 API 路由全景。
+安装 GitNexus（Graph RAG + LadybugDB）代码智能分析工具，对整个 StuRegSys 项目进行深度代码图谱分析，生成完整的依赖关系图、社区聚类、影响分析和 API 路由全景。
 
 ### 修改内容
 
@@ -14,7 +298,7 @@
 
 1. **GitNexus 安装**
    - 全局安装 `@xuansang2770/gitnexus` npm 包
-   - 因原项目路径含中文字符导致数据库创建失败，将项目复制到 `C:\temp\LeafSMS` 并初始化 git 仓库
+   - 因原项目路径含中文字符导致数据库创建失败，将项目复制到 `C:\temp\StuRegSys` 并初始化 git 仓库
 
 2. **分析结果**
    - 代码节点: 3,059
@@ -225,7 +509,7 @@
 
 ### 概述
 
-将 [Personnal-Web](https://github.com/BOATCHUANGU/Personnal-Web) 个人主页的极简黑白视觉风格完整移植到 LEAF-SMS 学生学籍管理系统的登录页面，同时保留所有原有功能。
+将 [Personnal-Web](https://github.com/BOATCHUANGU/Personnal-Web) 个人主页的极简黑白视觉风格完整移植到 STUREGSYS 学生学籍管理系统的登录页面，同时保留所有原有功能。
 
 ---
 
@@ -242,7 +526,7 @@
 | 效果 | 说明 |
 |------|------|
 | 自定义光标 | `mix-blend-mode: difference` 白色圆形光标跟随鼠标移动 |
-| 标题遮罩切换 | 鼠标悬停时 "LEAF-SMS" ↔ "学生学籍管理系统" 径向渐变遮罩切换 |
+| 标题遮罩切换 | 鼠标悬停时 "STUREGSYS" ↔ "学生学籍管理系统" 径向渐变遮罩切换 |
 | 翻转卡片动画 | 登录/关于/联系三个面板，鼠标悬停触发 `clip-path` 翻转动画 |
 | 擦除光线效果 | 翻转时白色光线从左到右扫过的动画 |
 | 毛玻璃导航栏 | `backdrop-filter: blur(12px)` 顶栏，悬停时自动隐藏自定义光标 |
@@ -252,11 +536,11 @@
 
 ```
 ┌─────────────────────────────────┐
-│  LEAF-SMS    首页 关于 登录 联系  │  ← 毛玻璃导航栏
+│  STUREGSYS   首页 关于 登录 联系  │  ← 毛玻璃导航栏
 ├─────────────────────────────────┤
 │                                 │
 │     学生学籍管理系统              │  ← eyebrow
-│     LEAF-SMS / 学生学籍管理系统   │  ← 标题遮罩切换区
+│     STUREGSYS / 学生学籍管理系统  │  ← 标题遮罩切换区
 │     专业的学生学籍管理解决方案     │  ← subcopy
 │                                 │
 ├─────────────────────────────────┤
@@ -303,8 +587,8 @@
 **改动内容：**
 
 1. **更新登录页标题**
-   - 旧：`'登录 - Leaf SMS'`
-   - 新：`'LEAF-SMS - 学生学籍管理系统'`
+   - 旧：`'登录 - StuRegSys'`
+   - 新：`'STUREGSYS - 学生学籍管理系统'`
 
 2. **修复目录大小写问题（22处）**
    - `@/views/admin/` → `@/views/Admin/`（14处）
@@ -363,4 +647,4 @@
 ## 参考来源
 
 - 视觉效果来源：[Personnal-Web](https://github.com/BOATCHUANGU/Personnal-Web)
-- 原系统项目：LEAF-SMS 学生学籍管理系统
+- 原系统项目：STUREGSYS 学生学籍管理系统

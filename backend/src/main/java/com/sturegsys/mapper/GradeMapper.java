@@ -1,4 +1,4 @@
-﻿package com.sturegsys.mapper;
+package com.sturegsys.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

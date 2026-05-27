@@ -1,4 +1,4 @@
-﻿package com.sturegsys.entity;
+package com.sturegsys.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
