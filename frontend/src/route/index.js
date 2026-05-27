@@ -1,6 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router';
 import store from '@/utils/store.js';
 import * as utils from '@/utils/utils.js';
+import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
   {
@@ -9,16 +9,6 @@ const routes = [
     component: () => import('@/views/LoginPage.vue'),
     meta: {
       title: 'LEAF-SMS - 学生学籍管理系统',
-      requiresAuth: false
-    }
-  },
-
-  {
-    path: '/home',
-    name: 'Home',
-    component: () => import('@/components/IndexLayout.vue'),
-    meta: {
-      title: 'Leaf SMS - 学生学籍管理系统',
       requiresAuth: false
     }
   },
@@ -33,7 +23,7 @@ const routes = [
         name: 'AdminDashboard',
         component: () => import('@/views/Admin/DashboardPage.vue'),
         meta: {
-          title: '控制�?- Leaf SMS',
+          title: '控制台 - Leaf SMS',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -181,7 +171,7 @@ const routes = [
         name: 'AcademicDashboard',
         component: () => import('@/views/academic/DashboardPage.vue'),
         meta: {
-          title: '控制�?- Leaf SMS',
+          title: '控制台 - Leaf SMS',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -299,7 +289,7 @@ const routes = [
         name: 'HeadTeacherDashboard',
         component: () => import('@/views/headteacher/DashboardPage.vue'),
         meta: {
-          title: '工作�?- Leaf SMS',
+          title: '工作台 - Leaf SMS',
           requiresAuth: true,
           role: 'HEADTEACHER'
         }
@@ -407,7 +397,7 @@ const routes = [
         name: 'TeacherDashboard',
         component: () => import('@/views/Teacher/DashboardPage.vue'),
         meta: {
-          title: '工作�?- Leaf SMS',
+          title: '工作台 - Leaf SMS',
           requiresAuth: true,
           role: 'TEACHER'
         }
@@ -585,7 +575,7 @@ const routes = [
     name: 'AuthorInfoPage',
     component: () => import('@/views/index/AuthorInfoPage.vue'),
     meta: {
-      title: '作者介�?- Leaf SMS',
+      title: '作者介绍 - Leaf SMS',
       requiresAuth: false
     }
   },

@@ -20,17 +20,7 @@
               <div class="contact-method">
                 <h3>电子邮件</h3>
                 <p>如有任何问题或建议，请通过邮件联系我们</p>
-                <a href="mailto:yangsz03@foxmail.com" class="contact-link">yangsz03@foxmail.com</a>
-              </div>
-              <div class="contact-method">
-                <h3>QQ交流群</h3>
-                <p>加入我们的QQ群，与其他用户和开发者交流</p>
-                <a href="https://qm.qq.com/q/OXBUbJCmAM" target="_blank" class="contact-link">加入QQ群</a>
-              </div>
-              <div class="contact-method">
-                <h3>开源项目</h3>
-                <p>欢迎访问我们的开源项目，参与贡献和讨论</p>
-                <a href="https://gitee.com/Yangshengzhou/leaf-sms" target="_blank" class="contact-link">查看源码</a>
+                <a href="mailto:Y3023209684@outlook.com" class="contact-link">Y3023209684@outlook.com</a>
               </div>
             </div>
           </section>

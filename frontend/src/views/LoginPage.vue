@@ -1,15 +1,42 @@
 <template>
-  <div class="app-shell" :style="cursorStyle">
+  <div class="app-shell" :style="cursorStyle" :class="{ 'cursor-hidden': !cursorVisible }">
     <div class="cursor-capture" aria-hidden="true"></div>
     <div class="cursor-core" aria-hidden="true"></div>
+
+    <div class="bichon-scrollbar" aria-hidden="true">
+      <div class="bichon-track"></div>
+      <div class="bichon-dog" :style="{ top: bichonTop + 'px' }">
+        <img src="/images/bichon.png" alt="bichon" width="36" height="36" draggable="false"/>
+      </div>
+      <div class="bichon-scroll-hint" :class="{ visible: showBichonHint }" :style="{ top: bichonTop + 10 + 'px' }">
+        {{ bichonHintText }}
+      </div>
+    </div>
 
     <header class="topbar">
       <div class="brand">LEAF-SMS</div>
       <nav class="nav">
-        <a href="#home">首页</a>
-        <a href="#about">关于</a>
-        <a @click.prevent="scrollToLogin">登录</a>
-        <a href="#contact">联系</a>
+        <a @click.prevent="scrollToSection('home')" :class="{ active: activeSection === 'home' }">首页</a>
+        <a @click.prevent="scrollToLogin" :class="{ active: activeSection === 'login' }">{{ isAuthenticated ? '进入后台' : '登录' }}</a>
+        <a @click.prevent="scrollToSection('features')" :class="{ active: activeSection === 'features' }">介绍</a>
+        <a @click.prevent="scrollToSection('about')" :class="{ active: activeSection === 'about' }">关于</a>
+        <a @click.prevent="scrollToSection('contact')" :class="{ active: activeSection === 'contact' }">联系</a>
+        <template v-if="isAuthenticated">
+          <el-dropdown @command="handleUserCommand" trigger="click" class="user-dropdown-wrap">
+            <span class="user-dropdown">
+              <el-avatar :size="24" :src="userAvatar">
+                <el-icon><User /></el-icon>
+              </el-avatar>
+              <span class="username">{{ displayName }}</span>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="dashboard">进入后台</el-dropdown-item>
+                <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </template>
       </nav>
     </header>
 
@@ -142,6 +169,19 @@
         </div>
       </section>
 
+      <section class="features-section" id="features">
+        <h2>学生学籍管理系统功能</h2>
+        <div class="features-grid">
+          <article class="feature-card" v-for="feature in features" :key="feature.id">
+            <div class="feature-icon">
+              <el-icon :size="40"><component :is="feature.icon" /></el-icon>
+            </div>
+            <h3>{{ feature.title }}</h3>
+            <p>{{ feature.description }}</p>
+          </article>
+        </div>
+      </section>
+
       <section
         class="panel flip-panel"
         :class="{ flipped: flippedPanels.has('about') }"
@@ -173,11 +213,48 @@
           <div class="flip-card-back">
             <h2>联系</h2>
             <div class="contact-links">
-              <a href="https://github.com/BOATCHUANGU/Personnal-Web" target="_blank" rel="noreferrer">Personnal-Web</a>
-              <a href="https://github.com/BOATCHUANGU" target="_blank" rel="noreferrer">@BOATCHUANGU</a>
+              <a href="https://github.com/xuemuluo/xuebiyesji" target="_blank" rel="noreferrer">xuebiyesji</a>
             </div>
           </div>
           <div class="wipe-line"></div>
+        </div>
+      </footer>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>LEAF-SMS</h3>
+            <p>专业的学生学籍管理系统</p>
+          </div>
+          <div class="footer-section">
+            <h4>产品功能</h4>
+            <ul>
+              <li><a href="#features" @click.prevent="scrollToFeatures">功能特色</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>帮助支持</h4>
+            <ul>
+              <li><a href="/user-guide" target="_blank" rel="noopener noreferrer">使用指南</a></li>
+              <li><a href="/contact-us" target="_blank" rel="noopener noreferrer">联系我们</a></li>
+              <li><a href="/faq" target="_blank" rel="noopener noreferrer">常见问题</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>法律信息</h4>
+            <ul>
+              <li><a href="/author-info" target="_blank" rel="noopener noreferrer">作者介绍</a></li>
+              <li><a href="/privacy-policy" target="_blank" rel="noopener noreferrer">隐私保护</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024-2026 LEAF-SMS - 学生学籍管理系统</p>
+          <div class="icp-info">
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2025075576号</a>
+            <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36010802001254" target="_blank"
+              rel="noreferrer">赣公网安备36010802001254号</a>
+          </div>
         </div>
       </footer>
     </main>
@@ -185,22 +262,66 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref, reactive, markRaw } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
-import { useRouter, useRoute } from 'vue-router'
 import store from '@/utils/store.js'
-import api from '../services/api'
 import * as utils from '@/utils/utils.js'
+import { Document, School, User, UserFilled } from '@element-plus/icons-vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { computed, markRaw, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import api from '../services/api'
 
 const router = useRouter()
 const route = useRoute()
 
+const isAuthenticated = computed(() => store.state.isAuthenticated)
+const currentUser = computed(() => store.state.user)
+const displayName = computed(() => {
+  const user = currentUser.value
+  if (!user) return '管理员'
+  return user.nickname || user.username || user.email || '管理员'
+})
+const userAvatar = computed(() => currentUser.value?.avatar || '')
+
+const FEATURES_DATA = [
+  { id: 1, icon: UserFilled, title: '学生信息管理', description: '完整的学生信息管理，支持添加、编辑、查询、删除等操作。' },
+  { id: 2, icon: School, title: '班级管理', description: '灵活的班级管理功能，支持班级创建、学生分配、教师管理等。' },
+  { id: 3, icon: Document, title: '学籍变动管理', description: '全面的学籍变动管理，支持转学、休学、复学、退学等操作。' }
+]
+const features = ref(FEATURES_DATA)
+
 const cursorX = ref(window.innerWidth / 2)
 const cursorY = ref(window.innerHeight / 2)
+const cursorVisible = ref(true)
 const maskX = ref(window.innerWidth / 2)
 const maskY = ref(window.innerHeight / 2)
 const titleStackRef = ref(null)
 const flippedPanels = ref(new Set())
+const activeSection = ref('home')
+const bichonTop = ref(0)
+const showBichonHint = ref(false)
+const bichonHintText = ref('')
+
+const SECTION_HINTS = {
+  home: '首页',
+  login: '登录',
+  features: '介绍',
+  about: '关于',
+  contact: '联系'
+}
+
+const updateBichonPosition = () => {
+  const scrollTop = window.scrollY
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight
+  const viewportHeight = window.innerHeight
+  const topbarHeight = 66
+  const maxTop = viewportHeight - 44
+  if (docHeight <= 0) {
+    bichonTop.value = topbarHeight
+    return
+  }
+  const ratio = scrollTop / docHeight
+  bichonTop.value = Math.max(topbarHeight, Math.min(topbarHeight + ratio * (maxTop - topbarHeight), maxTop - 40))
+}
 
 const flipOn = (id) => {
   if (flippedPanels.value.has(id)) return
@@ -210,6 +331,8 @@ const flipOn = (id) => {
 }
 
 let cursorCleanup = () => {}
+let observerCleanup = () => {}
+let bichonHintTimer = null
 
 const cursorStyle = computed(() => ({
   '--cursor-x': `${cursorX.value}px`,
@@ -433,10 +556,66 @@ const handleForgotPassword = async () => {
   }
 }
 
+const scrollToSection = (sectionId) => {
+  const el = document.getElementById(sectionId)
+  if (!el) return
+  const topbar = document.querySelector('.topbar')
+  const offset = topbar ? topbar.offsetHeight : 0
+  const targetTop = el.getBoundingClientRect().top + window.scrollY - offset
+  window.scrollTo({
+    top: targetTop,
+    behavior: 'smooth'
+  })
+}
+
 const scrollToLogin = () => {
+  if (isAuthenticated.value) {
+    const userRole = store.state.user?.roleCode
+    const rolePaths = {
+      'ADMIN': '/admin',
+      'ACADEMIC': '/academic',
+      'HEADTEACHER': '/headteacher',
+      'TEACHER': '/teacher',
+      'PARENT': '/parent'
+    }
+    router.push(userRole && rolePaths[userRole] ? rolePaths[userRole] : '/admin')
+    return
+  }
   flipOn('login')
-  const el = document.getElementById('login-section')
-  if (el) el.scrollIntoView({ behavior: 'smooth' })
+  scrollToSection('login-section')
+}
+
+const scrollToFeatures = () => {
+  scrollToSection('features')
+}
+
+const handleUserCommand = async (command) => {
+  try {
+    if (command === 'logout') {
+      await ElMessageBox.confirm('确定要退出登录吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+        lockScroll: false
+      })
+      await store.logout()
+      ElMessage.success('已退出登录')
+    } else if (command === 'dashboard') {
+      const userRole = store.state.user?.roleCode
+      const rolePaths = {
+        'ADMIN': '/admin',
+        'ACADEMIC': '/academic',
+        'HEADTEACHER': '/headteacher',
+        'TEACHER': '/teacher',
+        'PARENT': '/parent'
+      }
+      router.push(userRole && rolePaths[userRole] ? rolePaths[userRole] : '/admin')
+    }
+  } catch (error) {
+    if (error !== 'cancel') {
+      ElMessage.error('操作失败，请重试')
+    }
+  }
 }
 
 onMounted(() => {
@@ -460,12 +639,49 @@ onMounted(() => {
   }
   document.addEventListener('touchmove', touchSet, { passive: true })
 
+  const onLeave = () => { cursorVisible.value = false }
+  const onEnter = () => { cursorVisible.value = true }
+  document.addEventListener('mouseleave', onLeave)
+  document.addEventListener('mouseenter', onEnter)
+
+  updateBichonPosition()
+  const onScroll = () => {
+    updateBichonPosition()
+    bichonHintText.value = SECTION_HINTS[activeSection.value] || ''
+    showBichonHint.value = true
+    clearTimeout(bichonHintTimer)
+    bichonHintTimer = setTimeout(() => { showBichonHint.value = false }, 1500)
+  }
+  window.addEventListener('scroll', onScroll, { passive: true })
+
   cursorCleanup = () => {
     document.removeEventListener('mousemove', onMove)
     document.removeEventListener('touchmove', touchSet)
+    document.removeEventListener('mouseleave', onLeave)
+    document.removeEventListener('mouseenter', onEnter)
+    window.removeEventListener('scroll', onScroll)
   }
 
   setTimeout(() => flipOn('login'), 800)
+
+  const sectionIds = ['home', 'login-section', 'features', 'about', 'contact']
+  const sectionMap = { 'login-section': 'login' }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id
+          activeSection.value = sectionMap[id] || id
+        }
+      })
+    },
+    { rootMargin: '-40% 0px -55% 0px' }
+  )
+  sectionIds.forEach((id) => {
+    const el = document.getElementById(id)
+    if (el) observer.observe(el)
+  })
+  observerCleanup = () => observer.disconnect()
 
   if (route.query.mode === 'register') {
     currentView.value = 'register'
@@ -488,6 +704,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   cursorCleanup()
+  observerCleanup()
 })
 </script>
 
@@ -498,6 +715,72 @@ onBeforeUnmount(() => {
   color: #111;
   cursor: none;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+:global(::-webkit-scrollbar) {
+  width: 8px;
+}
+
+:global(::-webkit-scrollbar-track) {
+  background: #f5f0eb;
+}
+
+:global(::-webkit-scrollbar-thumb) {
+  background: #e0d4c4;
+  border-radius: 4px;
+}
+
+:global(::-webkit-scrollbar-thumb:hover) {
+  background: #c4a88a;
+}
+
+.bichon-scrollbar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 48px;
+  height: 100vh;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.bichon-track {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  background: #f5f0eb;
+}
+
+.bichon-dog {
+  position: absolute;
+  right: 6px;
+  width: 36px;
+  height: 36px;
+  z-index: 51;
+  pointer-events: none;
+  transition: top 0.15s ease-out;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+}
+
+.bichon-scroll-hint {
+  position: fixed;
+  right: 52px;
+  z-index: 51;
+  pointer-events: none;
+  background: transparent;
+  color: #999;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.bichon-scroll-hint.visible {
+  opacity: 0.5;
 }
 
 .cursor-capture,
@@ -541,6 +824,12 @@ onBeforeUnmount(() => {
   height: 0;
 }
 
+.app-shell.cursor-hidden .cursor-capture,
+.app-shell.cursor-hidden .cursor-core {
+  width: 0;
+  height: 0;
+}
+
 .topbar {
   position: sticky;
   top: 0;
@@ -575,10 +864,27 @@ onBeforeUnmount(() => {
   color: #111;
   text-decoration: none;
   transition: opacity 0.2s;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #111;
+  transition: width 0.3s ease;
 }
 
 .nav a:hover {
   opacity: 0.6;
+}
+
+.nav a.active::after {
+  width: 100%;
 }
 
 .page {
@@ -997,6 +1303,153 @@ onBeforeUnmount(() => {
   color: #ff6b6b;
 }
 
+.user-dropdown-wrap {
+  cursor: pointer;
+}
+
+.user-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #111;
+}
+
+.user-dropdown .username {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.features-section {
+  padding: 80px 8vw;
+  border-top: 1px solid rgba(17, 17, 17, 0.1);
+  background: #fff;
+}
+
+.features-section h2 {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  padding: 32px 24px;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  border-color: rgba(17, 17, 17, 0.15);
+}
+
+.feature-icon {
+  color: #111;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.feature-card p {
+  color: rgba(17, 17, 17, 0.6);
+  line-height: 1.6;
+  font-size: 15px;
+  margin: 0;
+}
+
+.site-footer {
+  background: #111;
+  color: #d1d5db;
+  padding: 48px 8vw 24px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  margin: 0 0 16px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.footer-section p {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section a {
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 14px;
+}
+
+.footer-section a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 24px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.icp-info {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.icp-info a {
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 13px;
+}
+
+.icp-info a:hover {
+  color: #fff;
+}
+
 @media (max-width: 720px) {
   .topbar {
     gap: 16px;
@@ -1048,6 +1501,16 @@ onBeforeUnmount(() => {
     flex-direction: column;
     gap: 8px;
     align-items: stretch;
+    text-align: center;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
     text-align: center;
   }
 }

@@ -83,3 +83,6 @@ https-nginx/*.key
 
 # Cloned repos
 Personnal-Web/
+
+# GitNexus
+.gitnexus/
