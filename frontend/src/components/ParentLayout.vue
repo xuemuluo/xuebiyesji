@@ -7,7 +7,7 @@
           <el-button class="mobile-toggle" @click="showDrawer = true" v-if="isMobile">
             <el-icon><Menu /></el-icon>
           </el-button>
-          <h1 class="logo">Leaf SMS <span class="logo-sub">- 家长端</span></h1>
+          <h1 class="logo">StuRegSys <span class="logo-sub">- 家长端</span></h1>
         </div>
         <div class="header-right">
           <el-dropdown @command="handleCommand" trigger="click">
@@ -95,7 +95,7 @@
         <el-drawer v-model="showDrawer" direction="ltr" size="240px" :with-header="false" class="mobile-drawer"
           :body-style="{ padding: '0', backgroundColor: '#2c3e50' }" v-if="isMobile">
           <div class="drawer-header">
-            <h2 class="drawer-logo">Leaf SMS</h2>
+            <h2 class="drawer-logo">StuRegSys</h2>
           </div>
           <el-menu :default-active="activeMenu" class="parent-menu" router unique-opened @select="showDrawer = false">
             <el-menu-item index="/parent">
@@ -178,11 +178,11 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import { ElMessage, ElMessageBox } from 'element-plus'
-import { User, UserFilled, ArrowDown, Monitor, Folder, List, Calendar, TrendCharts, Reading, ChatDotRound, Setting, Menu } from '@element-plus/icons-vue'
 import store from '@/utils/store.js'
+import { ArrowDown, Calendar, ChatDotRound, Folder, List, Menu, Monitor, Reading, Setting, TrendCharts, User, UserFilled } from '@element-plus/icons-vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
@@ -208,7 +208,7 @@ const watermarkText = computed(() => {
   if (user?.email) {
     return user.email
   }
-  return 'Leaf SMS'
+  return 'StuRegSys'
 })
 
 const handleCommand = async (command) => {

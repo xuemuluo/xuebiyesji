@@ -1,6 +1,6 @@
-# Leaf SMS API 接口文档
+# StuRegSys API 接口文档
 
-本文档详细说明了 Leaf SMS 学生学籍管理系统的所有后端 API 接口。所有接口均以 `/api` 开头。
+本文档详细说明了 StuRegSys 学生学籍管理系统的所有后端 API 接口。所有接口均以 `/api` 开头。
 
 ## 认证接口 (Auth)
 

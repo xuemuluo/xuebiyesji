@@ -1,6 +1,6 @@
 spring:
   application:
-    name: leaf-sms-backend
+    name: stu-reg-sys-backend
   profiles:
     active: dev
   jackson:
@@ -22,7 +22,7 @@ server:
 
 app:
   jwt:
-    secret: leaf-sms-secret-key-for-jwt-token-generation
+    secret: sturegsys-secret-key-for-jwt-token-generation
     expiration: 86400000
 
 management:

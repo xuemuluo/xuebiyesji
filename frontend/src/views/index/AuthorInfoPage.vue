@@ -4,7 +4,7 @@
     <header class="page-header">
       <div class="container">
         <h1>关于作者</h1>
-        <p>Leaf SMS 学生学籍管理系统 · 独立开发者技术实践与产品探索</p>
+        <p>StuRegSys 学生学籍管理系统 · 独立开发者技术实践与产品探索</p>
       </div>
     </header>
 
@@ -20,13 +20,13 @@
               <div class="author-profile">
                 <div class="profile-avatar">
                   <div class="avatar-circle">
-                    <span class="avatar-text">Yang</span>
+                    <span class="avatar-text">Xue</span>
                   </div>
                 </div>
                 <div class="profile-info">
                   <div class="name-title">
                     <h3>xuemu</h3>
-                    <span class="developer-badge">Leaf SMS 开发者</span>
+                    <span class="developer-badge">StuRegSys 开发者</span>
                   </div>
                                     <div class="expertise-tags">
                     <span class="tag">Vue.js</span>
@@ -38,7 +38,7 @@
                   <p class="profile-bio">
                     全栈独立开发者，专注于从零到一构建实用产品。热衷于技术探索与创新实践，
                     深入研究用户需求，独立完成从产品设计、前后端开发到部署上线的全流程。
-                    已成功打造 Leaf SMS、LeafSort、Lucky_SMS 等多个项目，
+                    已成功打造 StuRegSys、LeafSort、Lucky_SMS 等多个项目，
                     致力于将创意转化为高效、实用的工具产品，为用户创造真实价值。
                   </p>
                 </div>
@@ -71,7 +71,7 @@
                   <div class="timeline-marker"></div>
                   <div class="timeline-content">
                     <h3>正式发布 · 2026年1月</h3>
-                    <p>LEAF-SMS 学生学籍管理系统正式上线并持续迭代优化，为用户提供稳定可靠的学籍管理服务。</p>
+                    <p>STUREGSYS 学生学籍管理系统正式上线并持续迭代优化，为用户提供稳定可靠的学籍管理服务。</p>
                   </div>
                 </div>
               </div>

@@ -14,7 +14,7 @@
     </div>
 
     <header class="topbar">
-      <div class="brand">LEAF-SMS</div>
+      <div class="brand">STUREGSYS</div>
       <nav class="nav">
         <a @click.prevent="scrollToSection('home')" :class="{ active: activeSection === 'home' }">首页</a>
         <a @click.prevent="scrollToLogin" :class="{ active: activeSection === 'login' }">{{ isAuthenticated ? '进入后台' : '登录' }}</a>
@@ -45,7 +45,7 @@
         <p class="eyebrow">学生学籍管理系统</p>
         <div ref="titleStackRef" class="title-stack">
           <div class="title-layer title-layer--en">
-            <h1 class="hero-title">LEAF-SMS</h1>
+            <h1 class="hero-title">STUREGSYS</h1>
           </div>
           <div class="title-layer title-layer--cn">
             <h1 class="hero-title">学生学籍管理系统</h1>
@@ -194,7 +194,7 @@
           </div>
           <div class="flip-card-back">
             <h2>关于</h2>
-            <p>LEAF-SMS 学生学籍管理系统，提供学生信息管理、班级管理、学籍变动管理等功能，助力学校信息化管理。</p>
+            <p>STUREGSYS 学生学籍管理系统，提供学生信息管理、班级管理、学籍变动管理等功能，助力学校信息化管理。</p>
           </div>
           <div class="wipe-line"></div>
         </div>
@@ -223,7 +223,7 @@
       <footer class="site-footer">
         <div class="footer-content">
           <div class="footer-section">
-            <h3>LEAF-SMS</h3>
+            <h3>STUREGSYS</h3>
             <p>专业的学生学籍管理系统</p>
           </div>
           <div class="footer-section">
@@ -249,7 +249,7 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2024-2026 LEAF-SMS - 学生学籍管理系统</p>
+          <p>&copy; 2024-2026 STUREGSYS - 学生学籍管理系统</p>
           <div class="icp-info">
             <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2025075576号</a>
             <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36010802001254" target="_blank"
@@ -479,7 +479,7 @@ const checkPasswordStrength = () => {
 
 const showUserAgreement = () => {
   ElMessageBox.alert(
-    '欢迎使用LEAF-SMS学生学籍管理系统！\n\n本系统为学生学籍管理提供全面解决方案，包括学生信息管理、班级管理、学籍变动管理等功能。\n\n使用本系统即表示您同意遵守相关规定，妥善保管账号密码，确保学生信息安全。',
+    '欢迎使用STUREGSYS学生学籍管理系统！\n\n本系统为学生学籍管理提供全面解决方案，包括学生信息管理、班级管理、学籍变动管理等功能。\n\n使用本系统即表示您同意遵守相关规定，妥善保管账号密码，确保学生信息安全。',
     '用户协议',
     {
       confirmButtonText: '我已阅读',
@@ -692,8 +692,8 @@ onMounted(() => {
     loginForm.email = savedCredentials.username
     loginForm.password = savedCredentials.password
     loginForm.rememberPassword = true
-    if (loginForm.email === 'admin@leaf.com') {
-      loginForm.email = 'admin@leafsms.com'
+    if (loginForm.email === 'admin@leaf.com' || loginForm.email === 'admin@leafsms.com') {
+      loginForm.email = 'admin@sturegsys.com'
     }
   }
 

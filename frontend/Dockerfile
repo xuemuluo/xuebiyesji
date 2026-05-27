@@ -2,7 +2,7 @@ FROM nginx:alpine
 
 COPY dist /usr/share/nginx/html
 
-COPY leafsms.conf /etc/nginx/conf.d/
+COPY sturegsys.conf /etc/nginx/conf.d/
 
 RUN rm -f /etc/nginx/conf.d/default.conf
 

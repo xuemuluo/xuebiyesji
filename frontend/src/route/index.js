@@ -1,4 +1,4 @@
-import store from '@/utils/store.js';
+﻿import store from '@/utils/store.js';
 import * as utils from '@/utils/utils.js';
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -8,7 +8,7 @@ const routes = [
     name: 'HomePage',
     component: () => import('@/views/LoginPage.vue'),
     meta: {
-      title: 'LEAF-SMS - 学生学籍管理系统',
+      title: 'STUREGSYS - 学生学籍管理系统',
       requiresAuth: false
     }
   },
@@ -23,7 +23,7 @@ const routes = [
         name: 'AdminDashboard',
         component: () => import('@/views/Admin/DashboardPage.vue'),
         meta: {
-          title: '控制台 - Leaf SMS',
+          title: '控制台 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -33,7 +33,7 @@ const routes = [
         name: 'StudentManagement',
         component: () => import('@/views/Admin/student/StudentManagement.vue'),
         meta: {
-          title: '学生管理 - Leaf SMS',
+          title: '学生管理 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -43,7 +43,7 @@ const routes = [
         name: 'StudentDetailPage',
         component: () => import('@/views/Admin/student/StudentDetailPage.vue'),
         meta: {
-          title: '学生详情 - Leaf SMS',
+          title: '学生详情 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -53,7 +53,7 @@ const routes = [
         name: 'StudentEditPage',
         component: () => import('@/views/Admin/student/StudentEditPage.vue'),
         meta: {
-          title: '编辑学生 - Leaf SMS',
+          title: '编辑学生 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -63,7 +63,7 @@ const routes = [
         name: 'ClassManagement',
         component: () => import('@/views/Admin/class/ClassManagement.vue'),
         meta: {
-          title: '班级管理 - Leaf SMS',
+          title: '班级管理 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -73,7 +73,7 @@ const routes = [
         name: 'ClassDetailPage',
         component: () => import('@/views/Admin/class/ClassDetailPage.vue'),
         meta: {
-          title: '班级详情 - Leaf SMS',
+          title: '班级详情 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -83,7 +83,7 @@ const routes = [
         name: 'ClassEditPage',
         component: () => import('@/views/Admin/class/ClassEditPage.vue'),
         meta: {
-          title: '编辑班级 - Leaf SMS',
+          title: '编辑班级 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -93,7 +93,7 @@ const routes = [
         name: 'StudentChangeManagement',
         component: () => import('@/views/Admin/change/StudentChangeManagement.vue'),
         meta: {
-          title: '学籍变动 - Leaf SMS',
+          title: '学籍变动 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -103,7 +103,7 @@ const routes = [
         name: 'StudentChangeDetailPage',
         component: () => import('@/views/Admin/change/StudentChangeDetailPage.vue'),
         meta: {
-          title: '学籍变动详情 - Leaf SMS',
+          title: '学籍变动详情 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -113,7 +113,7 @@ const routes = [
         name: 'UserManagement',
         component: () => import('@/views/Admin/UserManagement.vue'),
         meta: {
-          title: '用户管理 - Leaf SMS',
+          title: '用户管理 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -123,7 +123,7 @@ const routes = [
         name: 'UserDetailPage',
         component: () => import('@/views/Admin/UserDetailPage.vue'),
         meta: {
-          title: '用户详情 - Leaf SMS',
+          title: '用户详情 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -133,7 +133,7 @@ const routes = [
         name: 'UserEditPage',
         component: () => import('@/views/Admin/UserEditPage.vue'),
         meta: {
-          title: '编辑用户 - Leaf SMS',
+          title: '编辑用户 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -143,7 +143,7 @@ const routes = [
         name: 'OperationLogs',
         component: () => import('@/views/Admin/LogsPage.vue'),
         meta: {
-          title: '操作日志 - Leaf SMS',
+          title: '操作日志 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -153,7 +153,7 @@ const routes = [
         name: 'ProfilePage',
         component: () => import('@/views/Admin/ProfilePage.vue'),
         meta: {
-          title: '个人资料 - Leaf SMS',
+          title: '个人资料 - StuRegSys',
           requiresAuth: true,
           role: 'ADMIN'
         }
@@ -171,7 +171,7 @@ const routes = [
         name: 'AcademicDashboard',
         component: () => import('@/views/academic/DashboardPage.vue'),
         meta: {
-          title: '控制台 - Leaf SMS',
+          title: '控制台 - StuRegSys',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -181,7 +181,7 @@ const routes = [
         name: 'AcademicStudentManagement',
         component: () => import('@/views/academic/student/StudentManagement.vue'),
         meta: {
-          title: '学生管理 - Leaf SMS',
+          title: '学生管理 - StuRegSys',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -191,7 +191,7 @@ const routes = [
         name: 'AcademicStudentDetailPage',
         component: () => import('@/views/academic/student/StudentDetailPage.vue'),
         meta: {
-          title: '学生详情 - Leaf SMS',
+          title: '学生详情 - StuRegSys',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -201,7 +201,7 @@ const routes = [
         name: 'AcademicStudentEditPage',
         component: () => import('@/views/academic/student/StudentEditPage.vue'),
         meta: {
-          title: '编辑学生 - Leaf SMS',
+          title: '编辑学生 - StuRegSys',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -211,7 +211,7 @@ const routes = [
         name: 'AcademicChangeManagement',
         component: () => import('@/views/academic/change/ChangeManagement.vue'),
         meta: {
-          title: '学籍变动 - Leaf SMS',
+          title: '学籍变动 - StuRegSys',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -221,7 +221,7 @@ const routes = [
         name: 'AcademicChangeDetailPage',
         component: () => import('@/views/academic/change/ChangeDetailPage.vue'),
         meta: {
-          title: '学籍变动详情 - Leaf SMS',
+          title: '学籍变动详情 - StuRegSys',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -231,7 +231,7 @@ const routes = [
         name: 'AcademicClassManagement',
         component: () => import('@/views/academic/class/ClassManagement.vue'),
         meta: {
-          title: '班级管理 - Leaf SMS',
+          title: '班级管理 - StuRegSys',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -241,7 +241,7 @@ const routes = [
         name: 'AcademicClassDetailPage',
         component: () => import('@/views/academic/class/ClassDetailPage.vue'),
         meta: {
-          title: '班级详情 - Leaf SMS',
+          title: '班级详情 - StuRegSys',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -251,7 +251,7 @@ const routes = [
         name: 'AcademicClassEditPage',
         component: () => import('@/views/academic/class/ClassEditPage.vue'),
         meta: {
-          title: '编辑班级 - Leaf SMS',
+          title: '编辑班级 - StuRegSys',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -261,7 +261,7 @@ const routes = [
         name: 'AcademicReports',
         component: () => import('@/views/academic/ReportsPage.vue'),
         meta: {
-          title: '统计报表 - Leaf SMS',
+          title: '统计报表 - StuRegSys',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -271,7 +271,7 @@ const routes = [
         name: 'AcademicProfile',
         component: () => import('@/views/academic/ProfilePage.vue'),
         meta: {
-          title: '个人资料 - Leaf SMS',
+          title: '个人资料 - StuRegSys',
           requiresAuth: true,
           role: 'ACADEMIC'
         }
@@ -289,7 +289,7 @@ const routes = [
         name: 'HeadTeacherDashboard',
         component: () => import('@/views/headteacher/DashboardPage.vue'),
         meta: {
-          title: '工作台 - Leaf SMS',
+          title: '工作台 - StuRegSys',
           requiresAuth: true,
           role: 'HEADTEACHER'
         }
@@ -299,7 +299,7 @@ const routes = [
         name: 'HeadTeacherStudents',
         component: () => import('@/views/headteacher/StudentsPage.vue'),
         meta: {
-          title: '学生列表 - Leaf SMS',
+          title: '学生列表 - StuRegSys',
           requiresAuth: true,
           role: 'HEADTEACHER'
         }
@@ -309,7 +309,7 @@ const routes = [
         name: 'HeadTeacherStudentArchiveDetail',
         component: () => import('@/views/headteacher/StudentArchiveDetailPage.vue'),
         meta: {
-          title: '学生档案 - Leaf SMS',
+          title: '学生档案 - StuRegSys',
           requiresAuth: true,
           role: 'HEADTEACHER'
         }
@@ -319,7 +319,7 @@ const routes = [
         name: 'HeadTeacherAttendance',
         component: () => import('@/views/headteacher/AttendancePage.vue'),
         meta: {
-          title: '考勤管理 - Leaf SMS',
+          title: '考勤管理 - StuRegSys',
           requiresAuth: true,
           role: 'HEADTEACHER'
         }
@@ -329,7 +329,7 @@ const routes = [
         name: 'HeadTeacherPerformance',
         component: () => import('@/views/headteacher/PerformancePage.vue'),
         meta: {
-          title: '成绩管理 - Leaf SMS',
+          title: '成绩管理 - StuRegSys',
           requiresAuth: true,
           role: 'HEADTEACHER'
         }
@@ -339,7 +339,7 @@ const routes = [
         name: 'HeadTeacherArchives',
         component: () => import('@/views/headteacher/ArchivesPage.vue'),
         meta: {
-          title: '学籍档案 - Leaf SMS',
+          title: '学籍档案 - StuRegSys',
           requiresAuth: true,
           role: 'HEADTEACHER'
         }
@@ -349,7 +349,7 @@ const routes = [
         name: 'HeadTeacherChanges',
         component: () => import('@/views/headteacher/ChangesPage.vue'),
         meta: {
-          title: '变动记录 - Leaf SMS',
+          title: '变动记录 - StuRegSys',
           requiresAuth: true,
           role: 'HEADTEACHER'
         }
@@ -359,7 +359,7 @@ const routes = [
         name: 'HeadTeacherChangeDetail',
         component: () => import('@/views/headteacher/ChangeDetailPage.vue'),
         meta: {
-          title: '变动详情 - Leaf SMS',
+          title: '变动详情 - StuRegSys',
           requiresAuth: true,
           role: 'HEADTEACHER'
         }
@@ -369,7 +369,7 @@ const routes = [
         name: 'HeadTeacherMessages',
         component: () => import('@/views/headteacher/MessagesPage.vue'),
         meta: {
-          title: '消息通知 - Leaf SMS',
+          title: '消息通知 - StuRegSys',
           requiresAuth: true,
           role: 'HEADTEACHER'
         }
@@ -379,7 +379,7 @@ const routes = [
         name: 'HeadTeacherProfile',
         component: () => import('@/views/headteacher/ProfilePage.vue'),
         meta: {
-          title: '个人资料 - Leaf SMS',
+          title: '个人资料 - StuRegSys',
           requiresAuth: true,
           role: 'HEADTEACHER'
         }
@@ -397,7 +397,7 @@ const routes = [
         name: 'TeacherDashboard',
         component: () => import('@/views/Teacher/DashboardPage.vue'),
         meta: {
-          title: '工作台 - Leaf SMS',
+          title: '工作台 - StuRegSys',
           requiresAuth: true,
           role: 'TEACHER'
         }
@@ -407,7 +407,7 @@ const routes = [
         name: 'TeacherClasses',
         component: () => import('@/views/Teacher/ClassesPage.vue'),
         meta: {
-          title: '任教班级 - Leaf SMS',
+          title: '任教班级 - StuRegSys',
           requiresAuth: true,
           role: 'TEACHER'
         }
@@ -417,7 +417,7 @@ const routes = [
         name: 'TeacherStudents',
         component: () => import('@/views/Teacher/StudentsPage.vue'),
         meta: {
-          title: '学生名单 - Leaf SMS',
+          title: '学生名单 - StuRegSys',
           requiresAuth: true,
           role: 'TEACHER'
         }
@@ -427,7 +427,7 @@ const routes = [
         name: 'TeacherStudentDetail',
         component: () => import('@/views/Teacher/StudentDetailPage.vue'),
         meta: {
-          title: '学生详情 - Leaf SMS',
+          title: '学生详情 - StuRegSys',
           requiresAuth: true,
           role: 'TEACHER'
         }
@@ -437,7 +437,7 @@ const routes = [
         name: 'TeacherGrades',
         component: () => import('@/views/Teacher/GradesPage.vue'),
         meta: {
-          title: '成绩录入 - Leaf SMS',
+          title: '成绩录入 - StuRegSys',
           requiresAuth: true,
           role: 'TEACHER'
         }
@@ -447,7 +447,7 @@ const routes = [
         name: 'TeacherAttendance',
         component: () => import('@/views/Teacher/AttendancePage.vue'),
         meta: {
-          title: '考勤记录 - Leaf SMS',
+          title: '考勤记录 - StuRegSys',
           requiresAuth: true,
           role: 'TEACHER'
         }
@@ -457,7 +457,7 @@ const routes = [
         name: 'TeacherMessages',
         component: () => import('@/views/Teacher/MessagesPage.vue'),
         meta: {
-          title: '消息通知 - Leaf SMS',
+          title: '消息通知 - StuRegSys',
           requiresAuth: true,
           role: 'TEACHER'
         }
@@ -467,7 +467,7 @@ const routes = [
         name: 'TeacherProfile',
         component: () => import('@/views/Teacher/ProfilePage.vue'),
         meta: {
-          title: '个人资料 - Leaf SMS',
+          title: '个人资料 - StuRegSys',
           requiresAuth: true,
           role: 'TEACHER'
         }
@@ -485,7 +485,7 @@ const routes = [
         name: 'ParentDashboard',
         component: () => import('@/views/parent/DashboardPage.vue'),
         meta: {
-          title: '首页 - Leaf SMS',
+          title: '首页 - StuRegSys',
           requiresAuth: true,
           role: 'PARENT'
         }
@@ -495,7 +495,7 @@ const routes = [
         name: 'ParentChildChanges',
         component: () => import('@/views/parent/ChildChangesPage.vue'),
         meta: {
-          title: '变动记录 - Leaf SMS',
+          title: '变动记录 - StuRegSys',
           requiresAuth: true,
           role: 'PARENT'
         }
@@ -505,7 +505,7 @@ const routes = [
         name: 'ParentGrades',
         component: () => import('@/views/parent/GradesPage.vue'),
         meta: {
-          title: '成绩查询 - Leaf SMS',
+          title: '成绩查询 - StuRegSys',
           requiresAuth: true,
           role: 'PARENT'
         }
@@ -515,7 +515,7 @@ const routes = [
         name: 'ParentAttendance',
         component: () => import('@/views/parent/AttendancePage.vue'),
         meta: {
-          title: '考勤记录 - Leaf SMS',
+          title: '考勤记录 - StuRegSys',
           requiresAuth: true,
           role: 'PARENT'
         }
@@ -525,7 +525,7 @@ const routes = [
         name: 'ParentMessages',
         component: () => import('@/views/parent/MessagesPage.vue'),
         meta: {
-          title: '消息通知 - Leaf SMS',
+          title: '消息通知 - StuRegSys',
           requiresAuth: true,
           role: 'PARENT'
         }
@@ -535,7 +535,7 @@ const routes = [
         name: 'ParentProfile',
         component: () => import('@/views/parent/SettingsPage.vue'),
         meta: {
-          title: '个人资料 - Leaf SMS',
+          title: '个人资料 - StuRegSys',
           requiresAuth: true,
           role: 'PARENT'
         }
@@ -548,7 +548,7 @@ const routes = [
     name: 'UserGuidePage',
     component: () => import('@/views/index/UserGuidePage.vue'),
     meta: {
-      title: '使用指南 - Leaf SMS',
+      title: '使用指南 - StuRegSys',
       requiresAuth: false
     }
   },
@@ -557,7 +557,7 @@ const routes = [
     name: 'ContactUsPage',
     component: () => import('@/views/index/ContactUsPage.vue'),
     meta: {
-      title: '联系我们 - Leaf SMS',
+      title: '联系我们 - StuRegSys',
       requiresAuth: false
     }
   },
@@ -566,7 +566,7 @@ const routes = [
     name: 'FAQPage',
     component: () => import('@/views/index/FaqPage.vue'),
     meta: {
-      title: '常见问题 - Leaf SMS',
+      title: '常见问题 - StuRegSys',
       requiresAuth: false
     }
   },
@@ -575,7 +575,7 @@ const routes = [
     name: 'AuthorInfoPage',
     component: () => import('@/views/index/AuthorInfoPage.vue'),
     meta: {
-      title: '作者介绍 - Leaf SMS',
+      title: '作者介绍 - StuRegSys',
       requiresAuth: false
     }
   },
@@ -584,7 +584,7 @@ const routes = [
     name: 'PrivacyPolicyPage',
     component: () => import('@/views/index/PrivacyPolicyPage.vue'),
     meta: {
-      title: '隐私保护 - Leaf SMS',
+      title: '隐私保护 - StuRegSys',
       requiresAuth: false
     }
   },

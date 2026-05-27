@@ -4,7 +4,7 @@
     <header class="page-header">
       <div class="container">
         <h1>常见问题</h1>
-        <p>Leaf SMS 学生学籍管理系统的常见问题解答和使用帮助</p>
+        <p>StuRegSys 学生学籍管理系统的常见问题解答和使用帮助</p>
       </div>
     </header>
 

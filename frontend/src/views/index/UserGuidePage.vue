@@ -1,10 +1,10 @@
-<template>
+﻿<template>
   <div class="user-guide-page">
     <!-- 简洁的头部区域 -->
     <header class="page-header">
       <div class="container">
         <h1>使用指南</h1>
-        <p>Leaf SMS 学生学籍管理系统快速入门指南</p>
+        <p>StuRegSys 学生学籍管理系统快速入门指南</p>
       </div>
     </header>
 
@@ -15,13 +15,13 @@
           <section class="guide-section">
             <div class="section-header">
               <h2>快速入门</h2>
-              <p>新手用户快速上手Leaf SMS 学生学籍管理系统</p>
+              <p>新手用户快速上手StuRegSys 学生学籍管理系统</p>
             </div>
             <div class="guide-content">
               <el-collapse v-model="activeNames" accordion>
                 <el-collapse-item name="register" title="注册账号">
                   <div class="collapse-content">
-                    <p>注册 LEAF-SMS 学生学籍管理系统账号的要求如下：</p>
+                    <p>注册 STUREGSYS 学生学籍管理系统账号的要求如下：</p>
                     <ul>
                       <li>用户名：3-20个字符，支持中文、英文、数字和下划线</li>
                       <li>密码：6-100个字符，支持明文存储（按业务需求）</li>
@@ -49,7 +49,7 @@
 
                 <el-collapse-item name="review" title="业务评论管理">
                   <div class="collapse-content">
-                    <p>LEAF-SMS 集成了学籍变动管理模块，支持对学生学籍进行全流程管理：</p>
+                    <p>STUREGSYS 集成了学籍变动管理模块，支持对学生学籍进行全流程管理：</p>
                     <ul>
                       <li>变动申请：管理员可以发起学生学籍变动申请</li>
                       <li>变动审核：教务管理员对学籍变动申请进行审核与管理</li>
@@ -63,7 +63,7 @@
           <section class="guide-section">
             <div class="section-header">
               <h2>发展历程</h2>
-              <p>LEAF-SMS 学生学籍管理系统的成长历程</p>
+              <p>STUREGSYS 学生学籍管理系统的成长历程</p>
             </div>
             <div class="guide-content">
               <div class="timeline">
@@ -82,7 +82,7 @@
                 <div class="timeline-item">
                   <div class="timeline-content">
                     <h3>正式发布 · 2026年1月</h3>
-                    <p>LEAF-SMS 学生学籍管理系统正式上线并持续迭代优化，为用户提供稳定可靠的学籍管理服务。</p>
+                    <p>STUREGSYS 学生学籍管理系统正式上线并持续迭代优化，为用户提供稳定可靠的学籍管理服务。</p>
                   </div>
                 </div>
               </div>

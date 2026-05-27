@@ -1,8 +1,8 @@
 {
-  "name": "leaf-sms-frontend",
+  "name": "sturegsys-frontend",
   "version": "1.0.0",
   "private": true,
-  "description": "Leaf SMS 学生学籍管理系统前端",
+  "description": "StuRegSys 学生学籍管理系统前端",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

@@ -49,7 +49,7 @@ module.exports = defineConfig({
   },
   chainWebpack: config => {
     config.plugin('html').tap(args => {
-      args[0].title = 'Leaf SMS 学生学籍管理系统'
+      args[0].title = 'StuRegSys 学生学籍管理系统'
       return args
     })
     
@@ -88,7 +88,7 @@ module.exports = defineConfig({
     extract: isProduction
   },
   pwa: {
-    name: 'Leaf SMS 学生学籍管理系统',
+    name: 'StuRegSys 学生学籍管理系统',
     themeColor: '#409EFF',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',

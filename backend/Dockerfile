@@ -1,6 +1,6 @@
 FROM openjdk:17-alpine
 WORKDIR /app
-COPY leaf-sms-backend.jar /app/app.jar
+COPY stu-reg-sys-backend.jar /app/app.jar
 EXPOSE 8081
 
 ENV TZ=Asia/Shanghai
