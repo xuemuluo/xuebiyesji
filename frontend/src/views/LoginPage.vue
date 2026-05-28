@@ -249,12 +249,8 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2024-2026 STUREGSYS - 学生学籍管理系统</p>
-          <div class="icp-info">
-            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2025075576号</a>
-            <a href="https://beian.mps.gov.cn/#/query/webSearch?code=36010802001254" target="_blank"
-              rel="noreferrer">赣公网安备36010802001254号</a>
-          </div>
+          <p>&copy; 2026 STUREGSYS - 学生学籍管理系统</p>
+
         </div>
       </footer>
     </main>

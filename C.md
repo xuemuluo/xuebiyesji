@@ -1,5 +1,34 @@
 # STUREGSYS 版本迭代记录
 
+## v2.2 (2026-05-28)
+
+### 版本主题：玫瑰曲线加载动画集成
+
+### 更改原因
+
+将数学玫瑰曲线动画集成到项目开头作为加载动画，提升用户体验和视觉效果。
+
+### 更改方式
+
+1. 创建 `frontend/src/components/RoseLoader.vue` 组件
+2. 封装 rose-three.html 中的 SVG 玫瑰曲线动画（r = a cos(3θ)）
+3. 修改 `frontend/src/App.vue` 引入 RoseLoader 组件
+4. 移除 Element Plus v-loading 指令，使用自定义动画
+
+### 更改内容
+
+#### 1. 新增 RoseLoader.vue 组件
+- 76 个粒子沿玫瑰曲线轨迹运动
+- 支持旋转和呼吸脉动效果
+- 白色背景 + 深灰色动画配色
+- 淡出过渡动画（0.8秒）
+
+#### 2. 修改 App.vue
+- 引入 RoseLoader 组件
+- 加载完成后延迟 1.5 秒显示主内容
+
+---
+
 ## v2.0 (2026-05-27)
 
 ### 版本主题：后端Java包名全面重命名

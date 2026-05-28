@@ -1,6 +1,6 @@
 <template>
-  <div id="app" v-loading="isLoading" :element-loading-text="loadingText"
-    :element-loading-background="loadingBackground">
+  <RoseLoader :visible="isLoading" />
+  <div id="app" v-show="!isLoading">
     <div v-if="hasError" class="app-error">
       <el-result icon="error" title="应用加载失败" :sub-title="errorMessage">
         <template #extra>
@@ -13,14 +13,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onErrorCaptured } from 'vue'
+import { onErrorCaptured, onMounted, ref } from 'vue'
+import RoseLoader from './components/RoseLoader.vue'
 import store from './utils/store.js'
 
 const isLoading = ref(true)
 const hasError = ref(false)
 const errorMessage = ref('')
-const loadingText = ref('正在加载应用...')
-const loadingBackground = ref('rgba(255, 255, 255, 0.8)')
 
 onErrorCaptured((err) => {
   hasError.value = true
@@ -34,7 +33,9 @@ const retryLoading = async () => {
 
   try {
     await store.init()
-    isLoading.value = false
+    setTimeout(() => {
+      isLoading.value = false
+    }, 1500)
   } catch (error) {
     hasError.value = true
     errorMessage.value = error.message || '初始化失败'
@@ -47,7 +48,9 @@ onMounted(async () => {
     if (typeof store.init === 'function') {
       await store.init()
     }
-    isLoading.value = false
+    setTimeout(() => {
+      isLoading.value = false
+    }, 1500)
   } catch (error) {
     hasError.value = true
     errorMessage.value = error.message || '初始化失败'
