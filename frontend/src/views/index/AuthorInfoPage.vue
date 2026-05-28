@@ -38,47 +38,13 @@
                   <p class="profile-bio">
                     全栈独立开发者，专注于从零到一构建实用产品。热衷于技术探索与创新实践，
                     深入研究用户需求，独立完成从产品设计、前后端开发到部署上线的全流程。
-                    已成功打造 StuRegSys、LeafSort、Lucky_SMS 等多个项目，
+                    已成功打造 StuRegSys项目，
                     致力于将创意转化为高效、实用的工具产品，为用户创造真实价值。
                   </p>
                 </div>
               </div>
             </div>
           </section>
-
-          <!-- 开发历程 -->
-          <section class="author-section">
-            <div class="section-header">
-              <h2>开发历程</h2>
-            </div>
-            <div class="section-content">
-              <div class="timeline">
-                <div class="timeline-item">
-                  <div class="timeline-marker"></div>
-                  <div class="timeline-content">
-                    <h3>项目启动 · 2025年6月</h3>
-                    <p>深入分析中学学籍管理系统痛点，确立系统架构与技术选型，采用 Vue 3 + Spring Boot 3 现代化技术栈。</p>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-marker"></div>
-                  <div class="timeline-content">
-                    <h3>核心开发 · 2025年9月</h3>
-                    <p>完成前后端核心功能开发，实现授权密钥管理、用户权限控制、产品规格配置等关键核心业务模块。</p>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-marker"></div>
-                  <div class="timeline-content">
-                    <h3>正式发布 · 2026年1月</h3>
-                    <p>STUREGSYS 学生学籍管理系统正式上线并持续迭代优化，为用户提供稳定可靠的学籍管理服务。</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-
         </div>
       </div>
     </main>

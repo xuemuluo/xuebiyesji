@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS leaf_sms;
-CREATE DATABASE leaf_sms DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+DROP DATABASE IF EXISTS stu_reg_sys;
+CREATE DATABASE stu_reg_sys DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-USE leaf_sms;
+USE stu_reg_sys;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -23,11 +23,11 @@ CREATE TABLE users (
 ) COMMENT '用户表';
 
 INSERT INTO users (user_id, username, password, real_name, gender, phone, email, role_code) VALUES
-('USER001', 'admin_system', '123456', '陈明华', 'M', '13912345678', 'chenmh@qq.com', 'ADMIN'),
-('USER002', 'academic_admin', '123456', '刘晓梅', 'F', '13823456789', 'liuxm@qq.com', 'ACADEMIC'),
-('USER003', 'teacher_li', '123456', '李秀英', 'F', '13734567890', 'lixy@qq.com', 'HEADTEACHER'),
-('USER004', 'teacher_wang', '123456', '王建国', 'M', '13645678901', 'wangjg@qq.com', 'TEACHER'),
-('USER005', 'parent_zhang', '123456', '张伟', 'M', '13556789012', 'zhangwei@qq.com', 'PARENT');
+('USER001', 'admin_system', '123456', '雪落', 'M', '19374028320', 'xueluo@qq.com', 'ADMIN'),
+('USER002', 'academic_admin', '123456', '温书尧', 'M', '13823456789', 'wensy@qq.com', 'ACADEMIC'),
+('USER003', 'teacher_shen', '123456', '沈绍安', 'M', '13734567890', 'shensa@qq.com', 'HEADTEACHER'),
+('USER004', 'teacher_yang', '123456', '杨思恬', 'F', '13645678901', 'yangst@qq.com', 'TEACHER'),
+('USER005', 'parent_li', '123456', '李若宁', 'F', '13556789012', 'lirn@qq.com', 'PARENT');
 
 DROP TABLE IF EXISTS classes;
 CREATE TABLE classes (

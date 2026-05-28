@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="user-guide-page">
     <!-- 简洁的头部区域 -->
     <header class="page-header">
@@ -58,34 +58,6 @@
                   </div>
                 </el-collapse-item>
               </el-collapse>
-            </div>
-          </section>
-          <section class="guide-section">
-            <div class="section-header">
-              <h2>发展历程</h2>
-              <p>STUREGSYS 学生学籍管理系统的成长历程</p>
-            </div>
-            <div class="guide-content">
-              <div class="timeline">
-                <div class="timeline-item">
-                  <div class="timeline-content">
-                    <h3>项目启动 · 2025年6月</h3>
-                    <p>深入分析中学学籍管理系统痛点，确立系统架构与技术选型，采用 Vue 3 + Spring Boot 3 现代化技术栈。</p>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-content">
-                    <h3>核心开发 · 2025年9月</h3>
-                    <p>完成前后端核心功能开发，实现学生信息管理、学籍变动管理、班级管理等关键核心业务模块。</p>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-content">
-                    <h3>正式发布 · 2026年1月</h3>
-                    <p>STUREGSYS 学生学籍管理系统正式上线并持续迭代优化，为用户提供稳定可靠的学籍管理服务。</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </section>
         </div>

@@ -1,15 +1,17 @@
 <template>
   <RoseLoader :visible="isLoading" />
-  <div id="app" v-show="!isLoading">
-    <div v-if="hasError" class="app-error">
-      <el-result icon="error" title="应用加载失败" :sub-title="errorMessage">
-        <template #extra>
-          <el-button type="primary" @click="retryLoading">重试</el-button>
-        </template>
-      </el-result>
+  <Transition name="slide-down">
+    <div id="app" v-show="!isLoading">
+      <div v-if="hasError" class="app-error">
+        <el-result icon="error" title="应用加载失败" :sub-title="errorMessage">
+          <template #extra>
+            <el-button type="primary" @click="retryLoading">重试</el-button>
+          </template>
+        </el-result>
+      </div>
+      <router-view v-else />
     </div>
-    <router-view v-else />
-  </div>
+  </Transition>
 </template>
 
 <script setup>
@@ -60,6 +62,23 @@ onMounted(async () => {
 </script>
 
 <style>
+.slide-down-enter-active {
+  transition: opacity 1.5s ease, transform 1.5s ease, filter 1.5s ease;
+  transition-delay: 0.5s;
+}
+
+.slide-down-enter-from {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(6px);
+}
+
+.slide-down-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
